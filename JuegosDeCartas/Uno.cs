@@ -44,7 +44,7 @@ namespace JuegosDeCartas
 //			}
 			
 			foreach (Player p in players){
-				for(int i=0;i<=7;i++){
+				for(int i=0;i<7;i++){
 					Carta card = mazo.getMazo().Coleccion[randomUnicoDeInstancia.Next(0,mazo.getMazo().Coleccion.Count-1)];
 					p.setMano(card);
 					mazo.getMazo().Coleccion.Remove(card);
@@ -60,15 +60,19 @@ namespace JuegosDeCartas
 		
 				
 		public override void jugarMano(){
-			Console.WriteLine("Se juega la mano...");
-	
-			foreach(Player p in players){
-				//if(!p.manoVacia()){
-					List<Carta> mano = p.turnoJugar(mazo);
-				//}	
-				
-			}	
-			//sumar puntos
+			Console.WriteLine("Se JUega la mano...");
+			jugarE();
+
+			
+			//this.jugarE();
+//			foreach(Player p in players){				
+//					List<Carta> mano = p.turnoJugar(mazo);	
+//					if(!p.manoVacia()){
+//						this.jugarMano();
+//					}					
+//			}	
+			
+			//sumar puntos LUEGO DE QUE ALGUNO SE HAYA QUEDADO SIN CARTAS... COMO HACERLO
 			this.sumarPuntos();
 //			
 //			Console.WriteLine("RESULTADOS");
@@ -80,14 +84,34 @@ namespace JuegosDeCartas
 				//mostrarRESULTADOS
 				this.showResult();
 				this.showWinner();
+				//break;
 			//	break;			
 			}	
+//			//if(!p.manoVacia()){
+//				this.jugarMano();
+//			//}
 		}
+		
+		
+		public void jugarE(){
+			foreach(Player p in players){				
+				if(p.manoVacia()){
+					break;
+				}	
+				else{
+					List<Carta> mano = p.turnoJugar(mazo);
+				}
+			}
+			Console.WriteLine("	ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+			this.jugarE();
+		}
+		
 		
 		
 		public void sumarPuntos(){
 			foreach(Player p in players){
-				p.sumarPunto();
+				p.sumar();
+				Console.WriteLine("El jugador {0} tiene {1} puntos.",p.getName(),p.getPuntos());
 			}	
 		}
 		

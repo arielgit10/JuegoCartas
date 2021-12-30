@@ -7,14 +7,12 @@ namespace JuegosDeCartas
 
 	public class Mazo
 	{
-		//List<Player> jugadores = new List<Player>();
 		Pila mazzo;
 		Carta pila;
 		
 		public Mazo()
 		{
 			this.mazzo = new Pila();
-		//	this.jugadores = jugadores;
 			this.llenar();
 		}
 		
@@ -47,6 +45,7 @@ namespace JuegosDeCartas
 			}
 		}
 		
+	
 		
 	}
 }

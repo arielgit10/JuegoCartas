@@ -52,7 +52,7 @@ namespace JuegosDeCartas
 				}
 
 			}
-
+			this.mano=manoAux;
 			return manoAux;
 		}
 	
@@ -60,6 +60,7 @@ namespace JuegosDeCartas
 			
 			if(card.mismoColor(mazo.getPila())|card.mismoValor(mazo.getPila())){
 				Console.WriteLine("El jugador {0} tira la carta {1} de {2}.",jugador.getName(),card.getValor(), card.getColor());
+				Console.WriteLine("cartas restantes del mazo {0}.",mazo.getMazo().Coleccion.Count);
 				mazo.setPila(card);
 				this.tiro=true;
 			}
@@ -85,16 +86,6 @@ namespace JuegosDeCartas
 
 
 
-
-
-
-
-
-
-
-
-		
-		
 //		public List<Carta> throwCart(List<Carta> manoAux,Player jugador,Carta c){					
 //			Console.WriteLine("El jugador {0} tira la carta {1} de {2}.",jugador.getName(),c.getValor(), c.getColor());			
 //			manoAux.RemoveAt(this.mano.IndexOf(c));

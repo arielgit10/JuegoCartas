@@ -7,7 +7,7 @@ namespace JuegosDeCartas
 	public class Player
 	{
 		private string name;
-		private int points, turno;
+		private int points;
 	//	private List<Carta> hand;
 		
 		private ManoJugador manoJug;
@@ -84,37 +84,19 @@ namespace JuegosDeCartas
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	
 		public bool manoVacia(){
+			Console.WriteLine("Cantidad de cartas del jugador {0} son {1}",this.getName(),this.manoJug.getMano().Count);
 			return this.manoJug.getMano().Count==0;
 			//return this.hand.Count==0;
 		}
 
-		public void sumarPunto(){
+		public void sumar(){
 			
 			foreach(Carta c in this.manoJug.getMano()){
 				points+=c.getValor();
 			}
-			
+			this.mostrarMano();
 //			foreach(Carta c in this.hand){
 //				points+=c.getValor();
 //			}
@@ -127,6 +109,7 @@ namespace JuegosDeCartas
 		}
 
 		public void mostrarMano(){
+			Console.WriteLine("\nCartas restantes del jugador {0}.",name);
 			foreach(Carta c in this.manoJug.getMano()){
 				Console.WriteLine(c.ToString());
 					}

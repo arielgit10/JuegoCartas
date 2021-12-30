@@ -17,10 +17,7 @@ namespace JuegosDeCartas
 			
 			mezclar();
 			repartir();
-			jugarMano();
-			//tomar carta
-			//descartar carta
-			
+			jugarMano();	
 			HayGanador();
 			
 			//return null;
