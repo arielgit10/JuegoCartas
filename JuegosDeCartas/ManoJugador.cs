@@ -47,28 +47,26 @@ namespace JuegosDeCartas
 				}
 				else{
 					//volver a repartir...
+					//crear mazo nuevo
+					
 				}
-//				Carta card= mazo.getMazo().sacar();
-//				Console.WriteLine("El jugador {0} levanta la carta {1} de {2}.",jugador.getName(), card.getValor(), card.getColor());
-//				Console.WriteLine("En el mazo hay: {0} cartas restantes.",mazo.getMazo().Coleccion.Count);
-//				
-//				this.mano.Add(card);
-//				this.jugarMano(jugador,mazo);
+
 			}
-						
-			//this.mano=manoAux;
+
 			return manoAux;
 		}
 	
 		private List<Carta> __jugarMano(Carta card,List<Carta> manoAux, Mazo mazo,Player jugador){
-			if(card!=mazo.getPila()){
-				manoAux.Add(card);
-			}
-			else{
+			
+			if(card.mismoColor(mazo.getPila())|card.mismoValor(mazo.getPila())){
 				Console.WriteLine("El jugador {0} tira la carta {1} de {2}.",jugador.getName(),card.getValor(), card.getColor());
 				mazo.setPila(card);
 				this.tiro=true;
 			}
+			else{
+				manoAux.Add(card);
+			}
+			
 			return manoAux;			
 		}
 		
