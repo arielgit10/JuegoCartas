@@ -9,11 +9,13 @@ namespace JuegosDeCartas
 	{
 		private List<Carta> mano;
 		private bool tiro;
+		private int veces;
 		
 		public ManoJugador()
 		{
 			this.mano=new List<Carta>();
 			this.tiro=false;
+			this.veces=0;
 		}
 		
 		public void agregarCarta(Carta a){
@@ -21,7 +23,7 @@ namespace JuegosDeCartas
 		}
 		
 		public void eliminarCarta(Carta a){
-			this.mano.RemoveAt(this.mano.IndexOf(a));
+			this.mano.RemoveAt(this.mano.IndexOf(a)-1);
 		}
 		
 		public List<Carta> getMano(){
@@ -34,24 +36,19 @@ namespace JuegosDeCartas
 			
 			foreach(Carta c in this.mano){
 				manoAux=__jugarMano(c,manoAux,mazo,jugador);
+				if(jugador.manoVacia()){
+					Console.WriteLine("EL JUGADOR YA NO TIENE CARTAS");
+					break;
+				}
 			}
 			if(!tiro){
-			
-				if(mazo.getMazo().Coleccion.Count!=0){
-					Carta card= mazo.getMazo().sacar();
-					Console.WriteLine("El jugador {0} levanta la carta {1} de {2}.",jugador.getName(), card.getValor(), card.getColor());
-					Console.WriteLine("En el mazo hay: {0} cartas restantes.",mazo.getMazo().Coleccion.Count);
-				
-					this.mano.Add(card);
+				this.veces++;
+				if(this.veces<2){	
+					manoAux=this.pickCard(manoAux,mazo,jugador);
 					this.jugarMano(jugador,mazo);
-				}
-				else{
-					//volver a repartir...
-					//crear mazo nuevo
-					
-				}
-
+				}	
 			}
+	
 			this.mano=manoAux;
 			return manoAux;
 		}
@@ -62,27 +59,24 @@ namespace JuegosDeCartas
 				Console.WriteLine("El jugador {0} tira la carta {1} de {2}.",jugador.getName(),card.getValor(), card.getColor());
 				Console.WriteLine("cartas restantes del mazo {0}.",mazo.getMazo().Coleccion.Count);
 				mazo.setPila(card);
-				this.tiro=true;
+				this.tiro=true;				
 			}
 			else{
 				manoAux.Add(card);
 			}
-			
 			return manoAux;			
 		}
-		
 			
-//		public List<Carta> throwCart(Carta card,List<Carta> manoAux,Player jugador,Carta c){					
-//			Console.WriteLine("El jugador {0} tira la carta {1} de {2}.",jugador.getName(),c.getValor(), c.getColor());			
-//			manoAux.RemoveAt(this.mano.IndexOf(c));
-//			return manoAux;
-//		}
-//		
-//		public List<Carta> pickCard(List<Carta> manoAux ,Player jugador,Carta c){
-//			Console.WriteLine("El jugador {0} levanta la carta {1} de {2}.",jugador.getName(), c.getValor(), c.getColor());
-//			manoAux.Add(c);
-//			return manoAux;
-//		}
+		private List<Carta> pickCard(List<Carta> manoAux, Mazo mazo,Player jugador){
+			if(mazo.getMazo().Coleccion.Count!=0){
+					Carta card= mazo.getMazo().sacar();
+					Console.WriteLine("El jugador {0} levanta la carta {1} de {2}.",jugador.getName(), card.getValor(), card.getColor());
+					Console.WriteLine("En el mazo hay: {0} cartas restantes.",mazo.getMazo().Coleccion.Count);		
+					manoAux.Add(card);
+
+			}
+			return manoAux;
+		}
 
 
 
@@ -98,7 +92,13 @@ namespace JuegosDeCartas
 //			return manoAux;
 //		}
 		
-		
+		//		public List<Carta> throwCart(Carta card,List<Carta> manoAux,Player jugador,Carta c){					
+//			Console.WriteLine("El jugador {0} tira la carta {1} de {2}.",jugador.getName(),c.getValor(), c.getColor());			
+//			manoAux.RemoveAt(this.mano.IndexOf(c));
+//			return manoAux;
+//		}
+//	
+	
 		
 	
 	

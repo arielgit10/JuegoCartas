@@ -16,7 +16,7 @@ namespace JuegosDeCartas
 		public Player(string name)
 		{
 			this.name=name;
-			this.turno=0;
+			//this.turno=0;
 			//this.hand = new List<Carta>();
 			
 			this.manoJug= new ManoJugador();
@@ -86,7 +86,7 @@ namespace JuegosDeCartas
 		
 	
 		public bool manoVacia(){
-			Console.WriteLine("Cantidad de cartas del jugador {0} son {1}",this.getName(),this.manoJug.getMano().Count);
+			//Console.WriteLine("Cantidad de cartas del jugador {0} son {1}",this.getName(),this.manoJug.getMano().Count);
 			return this.manoJug.getMano().Count==0;
 			//return this.hand.Count==0;
 		}
