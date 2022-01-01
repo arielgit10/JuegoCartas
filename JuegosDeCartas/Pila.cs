@@ -13,14 +13,24 @@ namespace JuegosDeCartas
 		
 		public Pila()
 		{
-			coleccion=new List<Carta>();
+			this.coleccion=new List<Carta>();
 		}
+		
+		public List<Carta> getColeccion(){
+			return this.coleccion;
+		}
+		
 		
 		
 		//Agrega el comparable recibido por  parámetro a la colección que recibe el mensaje
 		public void agregar(Carta c){
- 			coleccion.Add(c);
+ 			this.coleccion.Add(c);
 		}
+		
+		public void eliminarCarta(Carta c){
+			this.coleccion.Remove(c);
+		}
+		
 		
 		//saca el elemento de la última posición
 		public Carta sacar() {
@@ -47,12 +57,11 @@ namespace JuegosDeCartas
 		}
 		
 		
-		
 			
-		public List<Carta> Coleccion{
-			set{coleccion=value;}
-			get{return coleccion;}
-		}
+//		public List<Carta> Coleccion{
+//			set{coleccion=value;}
+//			get{return coleccion;}
+//		}
 		
 		//Devuelve la cantidad de elementos comparables que tiene el coleccionable
 		public int cuantos(){

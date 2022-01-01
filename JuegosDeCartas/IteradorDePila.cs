@@ -12,7 +12,7 @@ namespace JuegosDeCartas
 
 		public IteradorDePila(Pila pila)
 		{
-			this.coleccion=pila.Coleccion;
+			this.coleccion=pila.getColeccion();
 			primero();
 		}
 		

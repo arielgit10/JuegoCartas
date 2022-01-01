@@ -99,15 +99,14 @@ namespace JuegosDeCartas
 				Console.WriteLine("El jugador {0} tira la carta {1} de {2}.\n",jugador.getName(),c.getValor(), c.getColor());
 				manoAux.eliminarCarta(c);		
 				mazo.setPila(c);
-				Console.WriteLine("Cartas restantes del mazo {0}.\n",mazo.getMazo().Coleccion.Count);			
 				return manoAux;				
 		}
 				
 		private ManoJugador __NoCoincidencia(Player jugador, Mazo mazo, ManoJugador manoAux){
-			if(mazo.getMazo().Coleccion.Count!=0){
+			if(mazo.getMazo().getColeccion().Count!=0){
 					Carta card= mazo.getMazo().sacar();
 					Console.WriteLine("El jugador {0} levanta la carta {1} de {2}.\n",jugador.getName(), card.getValor(), card.getColor());
-					Console.WriteLine("En el mazo hay: {0} cartas restantes.\n",mazo.getMazo().Coleccion.Count);		
+					Console.WriteLine("Cartas restantes del mazo {0}.\n",mazo.getMazo().getColeccion().Count);
 					manoAux.agregarCarta(card);
 					
 					//si el mazo no tiene cartas, volver a repartir con el monton de la pila... INTERESANTE DE HACER

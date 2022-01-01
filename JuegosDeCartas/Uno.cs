@@ -18,7 +18,6 @@ namespace JuegosDeCartas
 				randomUnicoDeInstancia = r;
 			}		
 			this.mazo = new Mazo();
-			this.mazo.llenar();
 			
 //			for(int i=0;i<4;i++){
 //				
@@ -45,17 +44,15 @@ namespace JuegosDeCartas
 			
 			foreach (Player p in players){
 				for(int i=0;i<7;i++){
-					Carta card = mazo.getMazo().Coleccion[randomUnicoDeInstancia.Next(0,mazo.getMazo().Coleccion.Count-1)];
-					
-					p.getMano().agregarCarta(card);
-					
-					mazo.getMazo().Coleccion.Remove(card);
+					Carta card = mazo.getMazo().getColeccion()[randomUnicoDeInstancia.Next(0,mazo.getMazo().getColeccion().Count-1)];
+					p.getMano().agregarCarta(card);				
+					mazo.getMazo().eliminarCarta(card);
 				}
 			}
 			//setear pila con tope
-			Carta carta = mazo.getMazo().Coleccion[randomUnicoDeInstancia.Next(0,mazo.getMazo().Coleccion.Count-1)];
-  			
+			Carta carta = mazo.getMazo().getColeccion()[randomUnicoDeInstancia.Next(0,mazo.getMazo().getColeccion().Count-1)];
 			mazo.setPila(carta);
+			mazo.getMazo().eliminarCarta(carta);
 			
 			Console.WriteLine("A jugar!\n");
 		}
@@ -64,7 +61,6 @@ namespace JuegosDeCartas
 		public override void jugarMano(){
 			Console.WriteLine("Se Juega la mano...\n");
 			Player ganador = null;
-			//this.inicioMano();
 			
 			ganador = this.inicioMano(ganador);
 			this.sumarPuntos(ganador);
@@ -72,20 +68,38 @@ namespace JuegosDeCartas
 			//comprobar si hay ganador
 			if(this.HayGanador()){
 				Console.WriteLine("HAY UN GANADOR.\n");
-				//mostrarRESULTADOS
 				this.showResult();
 				this.showWinner();		
 			}	
 			else{
+				this.resetear();
 				this.jugarMano();
 			}
 		}
+				
+		private void resetear(){
+			foreach(Player p in players){
+				p.getMano().limpiar();
+			}
+			this.mazo.setPila(null);
+			if(mazo.getPila() == null){
+				Console.WriteLine("Pila en null");
+			}
+			else{
+				Console.WriteLine("Pila seteada: VALOR {0}", mazo.getPila().ToString());
+			}
+			this.mazo.setMonton();
+			Console.WriteLine("Monton seteado: Largo {0}", mazo.getMonton().getColeccion().Count);
+			this.mazo.limpiarMazo();
+			Console.WriteLine("Mazo limpiado: Largo {0}", mazo.getMazo().getColeccion().Count);
+			this.mazo.llenar();
+			Console.WriteLine("Mazo lleno: Largo {0}", mazo.getMazo().getColeccion().Count);
+			this.repartir();
+		}
 		
-	
 		private Player inicioMano(Player ganador){
 			bool stop=false;
 			
-
 			foreach(Player p in players){
 				if(!stop){
 					ganador=this.jugarE(p, ganador);
@@ -100,45 +114,50 @@ namespace JuegosDeCartas
 
 			return ganador;			
 		}
-		
-		
+				
 		private Player jugarE(Player p, Player ganador){						
 				p.mostrarMano();
 				Console.WriteLine("Pila Mano: "+ mazo.getPila().ToString());
 				ganador= p.getMano().jugarMano(p,mazo, ganador);	
-				Console.WriteLine("	ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+				Console.WriteLine("\t**********************************\t");
 				return p;
 		}
 			
-		public void sumarPuntos(Player jug){
-			int sumar=0;	
+	
+		private void sumarPuntos(Player jug){
+			int sumar=0;		
+			this.puntosTotales();
+			Console.WriteLine("Puntos de la mano:\n");	
 			foreach(Player p in players){
-				if(p!=jug){
-					p.setPuntosHand();
+				p.setPuntosHand();
+				Console.WriteLine("\tEl jugador {0} tiene {1} puntos.\n",p.getName(),p.getPuntosHand());				
+				if(p!=jug){							
 					sumar += p.getPuntosHand();
-					Console.WriteLine("Puntos de jugadores perdedores:");
-					Console.WriteLine("\tEl jugador {0} tiene {1} puntos.\n",p.getName(),p.getPuntosHand());
-					p.resetearPuntosHand();
-					Console.WriteLine("\tEl jugador {0} tiene {1} puntos.\n",p.getName(),p.getPuntosHand());
-				}		
+				}
+				p.resetearPuntosHand();
 			}
 			jug.setPuntosTotal(sumar);
-			Console.WriteLine("Punto de jugador ganador de la mano:\n\tEl jugador {0} tiene {1} puntos ACUMULADOS.\n",jug.getName(),jug.getPuntosTotal());
+			Console.WriteLine("PUNTOS DEL JUGADOR GANADOR DE LA MANO:\n\tEL JUGADOR {0} TIENE {1} PUNTOS ACUMULADOS.\n",jug.getName(),jug.getPuntosTotal());
 		}
 		
-		
+		private void puntosTotales(){
+			Console.WriteLine("Puntos Totales de los jugadores:\n");
+			foreach(Player p in players){
+				Console.WriteLine("El jugador {0} tiene {1} puntos totales.\n",p.getName(),p.getPuntosTotal());
+			}
+		}
+				
 		public override bool HayGanador(){
 			bool winner=false;
 			foreach(Player p in players){
-				if(p.getPuntosTotal()>=500){
+				if(p.getPuntosTotal()>=100){
 					winner=true;
 					ganador=p;
 				}
 			}
 			return winner;
 		}
-		
-		
+				
 		public void showResult(){
 			Console.WriteLine("\nRESULTADOS FINALES: \n");
 			foreach(Player p in players){
@@ -146,7 +165,6 @@ namespace JuegosDeCartas
 			}
 		}
 		
-
 		public void showWinner(){
 			Console.WriteLine("El ganador es:");
 			Console.WriteLine(ganador.ToString());

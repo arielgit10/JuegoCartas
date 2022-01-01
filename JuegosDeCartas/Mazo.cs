@@ -7,9 +7,9 @@ namespace JuegosDeCartas
 
 	public class Mazo
 	{
-		Pila mazzo;
-		Carta pila;
-		Pila monton;
+		private Pila mazzo;
+		private Carta pila;
+		private Pila monton;
 		
 		public Mazo()
 		{
@@ -21,9 +21,17 @@ namespace JuegosDeCartas
 		public Pila getMazo(){
 			return this.mazzo;
 		}
+		
+		public void limpiarMazo(){
+			this.mazzo.getColeccion().Clear();
+		}
 
 		public Pila getMonton(){
 			return this.monton;
+		}
+		
+		public void setMonton(){
+			this.monton.getColeccion().Clear();
 		}
 		
 		public Carta getPila(){
@@ -51,6 +59,7 @@ namespace JuegosDeCartas
 		}
 		
 
+
 		public void volverMezclar(){
 			
 			//mezclar lo que está en el monton (crear y luego llamar a metodo dentro de la clase Pila)
@@ -58,7 +67,7 @@ namespace JuegosDeCartas
 			
 			
 			//luego de mezclar se lo añade al mazzo, que está vacío
-			foreach(Carta c in this.getMonton().Coleccion){
+			foreach(Carta c in this.getMonton().getColeccion()){
 				this.mazzo.agregar(c);
 			}	
 		}
