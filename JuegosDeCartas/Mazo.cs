@@ -9,28 +9,33 @@ namespace JuegosDeCartas
 	{
 		Pila mazzo;
 		Carta pila;
+		Pila monton;
 		
 		public Mazo()
 		{
 			this.mazzo = new Pila();
+			this.monton = new Pila();
 			this.llenar();
 		}
 		
 		public Pila getMazo(){
-			return mazzo;
+			return this.mazzo;
 		}
 
+		public Pila getMonton(){
+			return this.monton;
+		}
 		
 		public Carta getPila(){
-			return pila;
+			return this.pila;
 		}
 		
 		public void setPila(Carta c){
-			pila=c;
+			this.pila=c;
 		}
 		
-		public void llenar(){
-			
+		
+		public void llenar(){			
 			for(int i=0;i<=9;i++){
 				mazzo.agregar(new Carta("rojo",i));
 			}
@@ -45,6 +50,20 @@ namespace JuegosDeCartas
 			}
 		}
 		
+
+		public void volverMezclar(){
+			
+			//mezclar lo que está en el monton (crear y luego llamar a metodo dentro de la clase Pila)
+			//this.getMonton().mezclar();
+			
+			
+			//luego de mezclar se lo añade al mazzo, que está vacío
+			foreach(Carta c in this.getMonton().Coleccion){
+				this.mazzo.agregar(c);
+			}	
+		}
+		
+
 	
 		
 	}

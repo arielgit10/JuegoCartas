@@ -27,7 +27,7 @@ namespace JuegosDeCartas
 			
 			players.Add(new Player("ARIEL"));
 			players.Add(new Player("FFFFF"));
-			players.Add(new Player("GGGGG"));
+		//	players.Add(new Player("GGGGG"));
 		}
 		
 		
@@ -46,7 +46,9 @@ namespace JuegosDeCartas
 			foreach (Player p in players){
 				for(int i=0;i<7;i++){
 					Carta card = mazo.getMazo().Coleccion[randomUnicoDeInstancia.Next(0,mazo.getMazo().Coleccion.Count-1)];
-					p.setMano(card);
+					
+					p.getMano().agregarCarta(card);
+					
 					mazo.getMazo().Coleccion.Remove(card);
 				}
 			}
@@ -61,51 +63,45 @@ namespace JuegosDeCartas
 				
 		public override void jugarMano(){
 			Console.WriteLine("Se JUega la mano...");
-			jugarE();
-
-			
-			//this.jugarE();
-//			foreach(Player p in players){				
-//					List<Carta> mano = p.turnoJugar(mazo);	
-//					if(!p.manoVacia()){
-//						this.jugarMano();
-//					}					
-//			}	
-			
-			//sumar puntos LUEGO DE QUE ALGUNO SE HAYA QUEDADO SIN CARTAS... COMO HACERLO
+		
+			this.inicioMano();
 			this.sumarPuntos();
-//			
-//			Console.WriteLine("RESULTADOS");
-//			this.showResult();
-			
+					
 			//comprobar si hay ganador
 			if(this.HayGanador()){
 				Console.WriteLine("HAY UN GANADOR");
 				//mostrarRESULTADOS
 				this.showResult();
-				this.showWinner();
-				//break;
-			//	break;			
+				this.showWinner();		
 			}	
-//			//if(!p.manoVacia()){
+//			else{
 //				this.jugarMano();
-//			//}
+//			}
 		}
 		
-		
-		public void jugarE(){
-			foreach(Player p in players){				
-				if(p.manoVacia()){
-					break;
-				}	
-				else{
-					List<Carta> mano = p.turnoJugar(mazo);
+	
+		private void inicioMano(){
+			bool stop=false;
+			
+			foreach(Player p in players){
+				if(!stop){
+					this.jugarE(p);
+					if(p.manoVacia()){
+						stop=true;
+					}
 				}
 			}
-			Console.WriteLine("	ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
-			this.jugarE();
+			if(!stop){
+				this.inicioMano();
+			}		
 		}
-		
+			
+		private void jugarE(Player p){						
+				p.mostrarMano();
+				Console.WriteLine("Pila Mano: "+ mazo.getPila().ToString());
+				p.getMano().jugarMano(p,mazo);	
+			Console.WriteLine("	ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+		}
 		
 		
 		public void sumarPuntos(){

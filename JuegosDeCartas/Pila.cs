@@ -17,7 +17,6 @@ namespace JuegosDeCartas
 		}
 		
 		
-
 		//Agrega el comparable recibido por  parámetro a la colección que recibe el mensaje
 		public void agregar(Carta c){
  			coleccion.Add(c);
@@ -30,9 +29,6 @@ namespace JuegosDeCartas
 				temp = this.tope();
 				this.coleccion.RemoveAt(coleccion.Count-1);
 			}
-			
-			//Carta temp = this.tope();
-			//this.coleccion.RemoveAt(coleccion.Count-1);
 			return temp;
 		}
 			
@@ -40,13 +36,19 @@ namespace JuegosDeCartas
 		public Carta tope() {
 			return this.coleccion[coleccion.Count-1]; 
 		}
-		
-		
+			
 		public bool esVacia() {
 				return this.coleccion.Count == 0;
 		}
 		
 		
+		public void mezclar(){
+			//HOW?
+		}
+		
+		
+		
+			
 		public List<Carta> Coleccion{
 			set{coleccion=value;}
 			get{return coleccion;}
