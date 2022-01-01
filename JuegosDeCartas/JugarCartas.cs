@@ -11,23 +11,23 @@ namespace JuegosDeCartas
 		{
 		}
 	
-		
+	
 		public void jugar(){
 			//ganador= new Persona();
 			
 			mezclar();
 			repartir();
-			jugarMano();	
+			jugarMano();			
 			HayGanador();
 			
 			//return null;
 		}
-		
-		
+				
 		public abstract void mezclar();
 		public abstract void repartir();
 		public abstract void jugarMano();
 		public abstract bool HayGanador();
+		
 		
 		
 	}

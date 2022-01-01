@@ -7,7 +7,7 @@ namespace JuegosDeCartas
 	public class Player
 	{
 		private string name;
-		private int points;		
+		private int pointsHand, pointsTotal;		
 		private ManoJugador manoJug;
 		
 		
@@ -15,16 +15,33 @@ namespace JuegosDeCartas
 		{
 			this.name=name;			
 			this.manoJug= new ManoJugador();
+			this.pointsHand=0;
+			this.pointsTotal=0;
 		}
 		
 		
-		public int getPuntos(){
-			return this.points;
-		}
-		public void setPuntos(int value){
-			points=+value;
+		public int getPuntosHand(){
+			return this.pointsHand;
 		}
 		
+		public void setPuntosHand(){
+			foreach(Carta c in this.manoJug.getMano()){
+				this.pointsHand+=c.getValor();
+			}
+		}
+		
+		public void resetearPuntosHand(){
+			this.pointsHand=0;
+		}
+		
+		public int getPuntosTotal(){
+			return this.pointsTotal;
+		}
+			
+		public void setPuntosTotal(int valor){
+			this.pointsTotal+=valor;
+		}
+					
 		public string getName(){
 			return this.name;
 		}
@@ -47,40 +64,20 @@ namespace JuegosDeCartas
 			Console.WriteLine("El jugador {0} levanta la carta {1} de {2}.",name, c.getValor(), c.getColor());
 		    this.manoJug.agregarCarta(c);
 		}
-		
-		public int pointsHand(){
-			foreach(Carta c in this.manoJug.getMano()){
-				points+=c.getValor();
-			}
-			return points;
-		}
-		
-		public void cortar(){
-			Console.WriteLine();
-		}
-		
-			
+						
 		public bool manoVacia(){
 			return this.manoJug.manoVacia();
 		}
 
-		public void sumar(){		
-			foreach(Carta c in this.manoJug.getMano()){
-				points+=c.getValor();
-			}
-		}
-		
-		
 		public void mostrarMano(){
-			Console.WriteLine("\nCartas restantes del jugador {0}.",name);
+			Console.WriteLine("\nCartas restantes del jugador {0}.\n",name);
 			foreach(Carta c in this.manoJug.getMano()){
-				Console.WriteLine(c.ToString());
+				Console.WriteLine("\t"+c.ToString());
 			}
 		}
-		
-	
+
 		public override string ToString(){
-			return string.Format("Player Name={0}\nPoints={1}\n", name, points);
+			return string.Format("Player Name={0}\nTotal points={1}\n", this.name, this.pointsTotal);
 		}
 		
 		

@@ -27,17 +27,17 @@ namespace JuegosDeCartas
 			
 			players.Add(new Player("ARIEL"));
 			players.Add(new Player("FFFFF"));
-		//	players.Add(new Player("GGGGG"));
+			players.Add(new Player("GGGGG"));
 		}
 		
 		
 		public override void mezclar(){
-			Console.WriteLine("Se mezclan las cartas...");
+			Console.WriteLine("Se mezclan las cartas...\n");
 		}
 
 		
 		public override void repartir(){
-			Console.WriteLine("Se reparten las cartas...");
+			Console.WriteLine("Se reparten las cartas...\n");
 			
 //			if(players.Count==0){
 //				Console.WriteLine("NO HAY JUGADORES2");
@@ -57,87 +57,99 @@ namespace JuegosDeCartas
   			
 			mazo.setPila(carta);
 			
-			Console.WriteLine("A jugar!");
+			Console.WriteLine("A jugar!\n");
 		}
 		
 				
 		public override void jugarMano(){
-			Console.WriteLine("Se JUega la mano...");
-		
-			this.inicioMano();
-			this.sumarPuntos();
+			Console.WriteLine("Se Juega la mano...\n");
+			Player ganador = null;
+			//this.inicioMano();
+			
+			ganador = this.inicioMano(ganador);
+			this.sumarPuntos(ganador);
 					
 			//comprobar si hay ganador
 			if(this.HayGanador()){
-				Console.WriteLine("HAY UN GANADOR");
+				Console.WriteLine("HAY UN GANADOR.\n");
 				//mostrarRESULTADOS
 				this.showResult();
 				this.showWinner();		
 			}	
-//			else{
-//				this.jugarMano();
-//			}
+			else{
+				this.jugarMano();
+			}
 		}
 		
 	
-		private void inicioMano(){
+		private Player inicioMano(Player ganador){
 			bool stop=false;
 			
+
 			foreach(Player p in players){
 				if(!stop){
-					this.jugarE(p);
+					ganador=this.jugarE(p, ganador);
 					if(p.manoVacia()){
 						stop=true;
 					}
 				}
 			}
 			if(!stop){
-				this.inicioMano();
-			}		
+				ganador=this.inicioMano(ganador);
+			}	
+
+			return ganador;			
 		}
-			
-		private void jugarE(Player p){						
+		
+		
+		private Player jugarE(Player p, Player ganador){						
 				p.mostrarMano();
 				Console.WriteLine("Pila Mano: "+ mazo.getPila().ToString());
-				p.getMano().jugarMano(p,mazo);	
-			Console.WriteLine("	ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+				ganador= p.getMano().jugarMano(p,mazo, ganador);	
+				Console.WriteLine("	ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+				return p;
 		}
-		
-		
-		public void sumarPuntos(){
+			
+		public void sumarPuntos(Player jug){
+			int sumar=0;	
 			foreach(Player p in players){
-				p.sumar();
-				Console.WriteLine("El jugador {0} tiene {1} puntos.",p.getName(),p.getPuntos());
-			}	
+				if(p!=jug){
+					p.setPuntosHand();
+					sumar += p.getPuntosHand();
+					Console.WriteLine("Puntos de jugadores perdedores:");
+					Console.WriteLine("\tEl jugador {0} tiene {1} puntos.\n",p.getName(),p.getPuntosHand());
+					p.resetearPuntosHand();
+					Console.WriteLine("\tEl jugador {0} tiene {1} puntos.\n",p.getName(),p.getPuntosHand());
+				}		
+			}
+			jug.setPuntosTotal(sumar);
+			Console.WriteLine("Punto de jugador ganador de la mano:\n\tEl jugador {0} tiene {1} puntos ACUMULADOS.\n",jug.getName(),jug.getPuntosTotal());
 		}
 		
 		
 		public override bool HayGanador(){
 			bool winner=false;
 			foreach(Player p in players){
-				if(p.getPuntos()>=500){
+				if(p.getPuntosTotal()>=500){
 					winner=true;
 					ganador=p;
 				}
 			}
-				
 			return winner;
 		}
 		
 		
 		public void showResult(){
-			Console.WriteLine("RESULTADOS FINALES: ");
+			Console.WriteLine("\nRESULTADOS FINALES: \n");
 			foreach(Player p in players){
 				Console.WriteLine(p.ToString());
-				Console.WriteLine();Console.WriteLine();
 			}
-
 		}
 		
 
 		public void showWinner(){
+			Console.WriteLine("El ganador es:");
 			Console.WriteLine(ganador.ToString());
-			Console.WriteLine();Console.WriteLine();
 		}
 		
 		

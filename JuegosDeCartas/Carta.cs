@@ -25,7 +25,7 @@ namespace JuegosDeCartas
 		
 		public override string ToString()
 		{
-			return string.Format("Carta Color={0}, Valor={1}", color, valor);
+			return string.Format("Carta Color={0}, Valor={1}.\n", color, valor);
 		}
 
 		public bool mismoColor(Carta card){
@@ -35,6 +35,8 @@ namespace JuegosDeCartas
 		public bool mismoValor(Carta card){
 			return this.valor==card.valor;
 		}
+		
+		
 		
 	}
 }

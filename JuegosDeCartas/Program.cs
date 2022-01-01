@@ -7,11 +7,9 @@ namespace JuegosDeCartas
 	{
 		public static void Main(string[] args)
 		{
-			
-			
+					
 			Uno uno = new Uno();
 			uno.jugar();
-			
 			
 			
 			Console.Write("Press any key to continue . . . ");
