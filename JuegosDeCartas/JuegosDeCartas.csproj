@@ -48,6 +48,7 @@
     <Compile Include="Carta.cs" />
     <Compile Include="Cola.cs" />
     <Compile Include="Coleccionable.cs" />
+    <Compile Include="GeneradorDeDatosAleatorios.cs" />
     <Compile Include="Iterable.cs" />
     <Compile Include="Iterador.cs" />
     <Compile Include="IteradorDeCola.cs" />

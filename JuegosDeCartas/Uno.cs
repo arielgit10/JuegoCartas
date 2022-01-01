@@ -28,14 +28,17 @@ namespace JuegosDeCartas
 			players.Add(new Player("FFFFF"));
 			players.Add(new Player("GGGGG"));
 		}
-		
-		
+				
 		public override void mezclar(){
-			Console.WriteLine("Se mezclan las cartas...\n");
+			Console.WriteLine("Se mezclan las cartas...\n");			
+			this.mazo.getMazo().mezclar();
+			//this.mazo.getMazo().setColeccion(this.mazo.getMazo().mezclar());
 		}
-
 		
 		public override void repartir(){
+			
+			this.mazo.verMazo();
+			
 			Console.WriteLine("Se reparten las cartas...\n");
 			
 //			if(players.Count==0){
@@ -53,6 +56,10 @@ namespace JuegosDeCartas
 			Carta carta = mazo.getMazo().getColeccion()[randomUnicoDeInstancia.Next(0,mazo.getMazo().getColeccion().Count-1)];
 			mazo.setPila(carta);
 			mazo.getMazo().eliminarCarta(carta);
+			
+			
+			Console.WriteLine("LUEGO DE REPARTIR");
+			this.mazo.verMazo();
 			
 			Console.WriteLine("A jugar!\n");
 		}

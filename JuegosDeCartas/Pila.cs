@@ -7,20 +7,22 @@ namespace JuegosDeCartas
 	public class Pila:Coleccionable,Iterable
 	{
 		private List<Carta> coleccion;
-
-		private int contador;
+		private GeneradorDeDatosAleatorios g;
 		//private Iterador itera;
 		
 		public Pila()
 		{
 			this.coleccion=new List<Carta>();
+			this.g= GeneradorDeDatosAleatorios.getInstance();
 		}
 		
 		public List<Carta> getColeccion(){
 			return this.coleccion;
 		}
 		
-		
+		public void setColeccion(List<Carta> coleccion){
+			this.coleccion=coleccion;
+		}
 		
 		//Agrega el comparable recibido por  parámetro a la colección que recibe el mensaje
 		public void agregar(Carta c){
@@ -50,13 +52,19 @@ namespace JuegosDeCartas
 		public bool esVacia() {
 				return this.coleccion.Count == 0;
 		}
-		
-		
-		public void mezclar(){
-			//HOW?
+				
+		public void mezclar(){	
+			
+			for (int i = this.coleccion.Count - 1; i > 0; i--){
+				  int n = g.numeroAleatorio(this.coleccion.Count-1);
+				  
+				  Carta temporal = this.coleccion[i];
+				  this.coleccion[i]=this.coleccion[n];
+				  this.coleccion[n]=temporal;
+			}
 		}
-		
-		
+			
+	
 			
 //		public List<Carta> Coleccion{
 //			set{coleccion=value;}

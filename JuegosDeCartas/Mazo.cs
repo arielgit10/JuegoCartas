@@ -18,9 +18,19 @@ namespace JuegosDeCartas
 			this.llenar();
 		}
 		
+	
 		public Pila getMazo(){
 			return this.mazzo;
 		}
+		
+//		public Pila setMazo(){
+//			return this.mazzo;
+//		}
+		
+		public void mezclarMazo(){
+			this.mazzo.mezclar();
+		}
+		
 		
 		public void limpiarMazo(){
 			this.mazzo.getColeccion().Clear();
@@ -58,8 +68,7 @@ namespace JuegosDeCartas
 			}
 		}
 		
-
-
+		
 		public void volverMezclar(){
 			
 			//mezclar lo que está en el monton (crear y luego llamar a metodo dentro de la clase Pila)
@@ -72,8 +81,19 @@ namespace JuegosDeCartas
 			}	
 		}
 		
-
-	
+		
+		
+		
+		
+		
+		public void verMazo(){
+			Console.WriteLine("VER MAZO:\n");
+			foreach(Carta c in this.getMazo().getColeccion()){
+				Console.WriteLine(c.ToString());
+			}
+		}	
+		
+		
 		
 	}
 }
