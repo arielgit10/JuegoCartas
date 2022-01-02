@@ -44,8 +44,7 @@ namespace JuegosDeCartas
 		public Player jugarMano(Player jugador, Mazo mazo, Player ganador){
 
 			ManoJugador manoAux = new ManoJugador();
-
-			
+		
 			foreach(Carta c in this.getMano()){
 				manoAux.agregarCarta(c);
 			}

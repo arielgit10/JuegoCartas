@@ -53,8 +53,7 @@ namespace JuegosDeCartas
 				return this.coleccion.Count == 0;
 		}
 				
-		public void mezclar(){	
-			
+		public void mezclar(){			
 			for (int i = this.coleccion.Count - 1; i > 0; i--){
 				  int n = g.numeroAleatorio(this.coleccion.Count-1);
 				  

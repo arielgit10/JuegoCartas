@@ -39,6 +39,10 @@ namespace JuegosDeCartas
 			
 			this.mazo.verMazo();
 			
+			Console.WriteLine();Console.WriteLine();Console.WriteLine();
+			this.mazoPorColores();
+			Console.WriteLine();Console.WriteLine();Console.WriteLine();
+			
 			Console.WriteLine("Se reparten las cartas...\n");
 			
 //			if(players.Count==0){
@@ -47,17 +51,18 @@ namespace JuegosDeCartas
 			
 			foreach (Player p in players){
 				for(int i=0;i<7;i++){
-					Carta card = mazo.getMazo().getColeccion()[randomUnicoDeInstancia.Next(0,mazo.getMazo().getColeccion().Count-1)];
-					p.getMano().agregarCarta(card);				
-					mazo.getMazo().eliminarCarta(card);
+				//	Carta card = mazo.getMazo().getColeccion()[randomUnicoDeInstancia.Next(0,mazo.getMazo().getColeccion().Count-1)];
+				Carta card = this.mazo.getMazo().sacar();					
+				p.getMano().agregarCarta(card);
+				mazo.getMazo().eliminarCarta(card);
 				}
 			}
 			//setear pila con tope
-			Carta carta = mazo.getMazo().getColeccion()[randomUnicoDeInstancia.Next(0,mazo.getMazo().getColeccion().Count-1)];
+			//Carta carta = mazo.getMazo().getColeccion()[randomUnicoDeInstancia.Next(0,mazo.getMazo().getColeccion().Count-1)];
+			Carta carta = this.mazo.getMazo().sacar();
 			mazo.setPila(carta);
 			mazo.getMazo().eliminarCarta(carta);
-			
-			
+						
 			Console.WriteLine("LUEGO DE REPARTIR");
 			this.mazo.verMazo();
 			
@@ -95,12 +100,13 @@ namespace JuegosDeCartas
 			else{
 				Console.WriteLine("Pila seteada: VALOR {0}", mazo.getPila().ToString());
 			}
-			this.mazo.setMonton();
+			this.mazo.limpiarMonton();
 			Console.WriteLine("Monton seteado: Largo {0}", mazo.getMonton().getColeccion().Count);
 			this.mazo.limpiarMazo();
 			Console.WriteLine("Mazo limpiado: Largo {0}", mazo.getMazo().getColeccion().Count);
 			this.mazo.llenar();
 			Console.WriteLine("Mazo lleno: Largo {0}", mazo.getMazo().getColeccion().Count);
+			this.mazo.mezclarMazo();
 			this.repartir();
 		}
 		
@@ -157,7 +163,7 @@ namespace JuegosDeCartas
 		public override bool HayGanador(){
 			bool winner=false;
 			foreach(Player p in players){
-				if(p.getPuntosTotal()>=100){
+				if(p.getPuntosTotal()>=500){
 					winner=true;
 					ganador=p;
 				}
@@ -176,6 +182,52 @@ namespace JuegosDeCartas
 			Console.WriteLine("El ganador es:");
 			Console.WriteLine(ganador.ToString());
 		}
+		
+		
+		
+		
+		
+		public void mazoPorColores(){
+			List<Carta> rojo = new List<Carta>();
+			List<Carta> verde = new List<Carta>();
+			List<Carta> amarillo = new List<Carta>();
+			List<Carta> azul = new List<Carta>();
+			
+			foreach(Carta c in this.mazo.getMazo().getColeccion()){
+				if(c.getColor()=="rojo"){
+					rojo.Add(c);
+				}
+				if(c.getColor()=="verde"){
+					verde.Add(c);
+				}
+				if(c.getColor()=="azul"){
+					azul.Add(c);
+				}
+				if(c.getColor()=="amarillo"){
+					amarillo.Add(c);
+				}
+			}
+			
+			Console.WriteLine("CARTAS ROJO");
+			foreach(Carta c in rojo){
+				Console.WriteLine(c.ToString());
+			}
+			Console.WriteLine("CARTAS AZUL");
+			foreach(Carta c in azul){
+				Console.WriteLine(c.ToString());
+			}
+			Console.WriteLine("CARTAS AMARILLO");
+			foreach(Carta c in amarillo){
+				Console.WriteLine(c.ToString());
+			}
+			Console.WriteLine("CARTAS VERDE");
+			foreach(Carta c in verde){
+				Console.WriteLine(c.ToString());
+			}
+			
+			
+		}
+		
 		
 		
 	}
