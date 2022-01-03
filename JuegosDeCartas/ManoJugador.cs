@@ -40,6 +40,10 @@ namespace JuegosDeCartas
 			return this.mano.Count==0;
 		}
 		
+		public bool unaCarta(){
+			return this.mano.Count==1;
+		}
+		
 				
 		public Player jugarMano(Player jugador, Mazo mazo, Player ganador){
 
@@ -61,6 +65,9 @@ namespace JuegosDeCartas
 					if(c.mismoColor(mazo.getPila())|c.mismoValor(mazo.getPila())){
 						tiro=true;
 						manoAux= this.__coincidencia(jugador, c, mazo, manoAux);
+						if(manoAux.unaCarta()){
+							Console.WriteLine("EL JUGADOR {0} DICE 'UNO'.\n",jugador.getName());
+						}
 						if(manoAux.manoVacia()){
 							Console.WriteLine("EL JUGADOR NO TIENE MAS CARTAS.\n");
 							ganador=jugador;
