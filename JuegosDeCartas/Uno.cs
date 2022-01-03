@@ -24,39 +24,30 @@ namespace JuegosDeCartas
 		public override void mezclar(){
 			Console.WriteLine("Se mezclan las cartas...\n");			
 			this.mazo.getMazo().mezclar();
-			//this.mazo.getMazo().setColeccion(this.mazo.getMazo().mezclar());
 		}
 		
 		public override void repartir(){
 			
-			this.mazo.verMazo();
-			
-			Console.WriteLine();Console.WriteLine();Console.WriteLine();
-			this.mazoPorColores();
-			Console.WriteLine();Console.WriteLine();Console.WriteLine();
+			//this.mazo.verMazo();			
+//			Console.WriteLine();Console.WriteLine();Console.WriteLine();
+//			this.mazoPorColores();
+//			Console.WriteLine();Console.WriteLine();Console.WriteLine();
 			
 			Console.WriteLine("Se reparten las cartas...\n");
-			
-//			if(players.Count==0){
-//				Console.WriteLine("NO HAY JUGADORES2");
-//			}
-			
+						
 			foreach (Player p in players){
 				for(int i=0;i<7;i++){
-				//	Carta card = mazo.getMazo().getColeccion()[randomUnicoDeInstancia.Next(0,mazo.getMazo().getColeccion().Count-1)];
-				Carta card = this.mazo.getMazo().sacar();					
-				p.getMano().agregarCarta(card);
-				mazo.getMazo().eliminarCarta(card);
+					Carta card = this.mazo.getMazo().sacar();					
+					p.getMano().agregarCarta(card);
+					mazo.getMazo().eliminarCarta(card);
 				}
 			}
-			//setear pila con tope
-			//Carta carta = mazo.getMazo().getColeccion()[randomUnicoDeInstancia.Next(0,mazo.getMazo().getColeccion().Count-1)];
 			Carta carta = this.mazo.getMazo().sacar();
 			mazo.setPila(carta);
 			mazo.getMazo().eliminarCarta(carta);
 						
-			Console.WriteLine("LUEGO DE REPARTIR");
-			this.mazo.verMazo();
+//			Console.WriteLine("LUEGO DE REPARTIR");
+//			this.mazo.verMazo();
 			
 			Console.WriteLine("A jugar!\n");
 		}
@@ -86,18 +77,18 @@ namespace JuegosDeCartas
 				p.getMano().limpiar();
 			}
 			this.mazo.setPila(null);
-			if(mazo.getPila() == null){
-				Console.WriteLine("Pila en null");
-			}
-			else{
-				Console.WriteLine("Pila seteada: VALOR {0}", mazo.getPila().ToString());
-			}
+//			if(mazo.getPila() == null){
+//				Console.WriteLine("Pila en null");
+//			}
+//			else{
+//				Console.WriteLine("Pila seteada: VALOR {0}", mazo.getPila().ToString());
+//			}
 			this.mazo.limpiarMonton();
-			Console.WriteLine("Monton seteado: Largo {0}", mazo.getMonton().getColeccion().Count);
+			//Console.WriteLine("Monton seteado: Largo {0}", mazo.getMonton().getColeccion().Count);
 			this.mazo.limpiarMazo();
-			Console.WriteLine("Mazo limpiado: Largo {0}", mazo.getMazo().getColeccion().Count);
+			//Console.WriteLine("Mazo limpiado: Largo {0}", mazo.getMazo().getColeccion().Count);
 			this.mazo.llenar();
-			Console.WriteLine("Mazo lleno: Largo {0}", mazo.getMazo().getColeccion().Count);
+			//Console.WriteLine("Mazo lleno: Largo {0}", mazo.getMazo().getColeccion().Count);
 			this.mazo.mezclarMazo();
 			this.repartir();
 		}
@@ -116,10 +107,10 @@ namespace JuegosDeCartas
 			if(!stop){
 				ganador=this.inicioMano(ganador);
 			}	
-
 			return ganador;			
 		}
-				
+
+		
 		private Player jugarE(Player p, Player ganador){						
 				p.mostrarMano();
 				Console.WriteLine("Pila Mano: "+ mazo.getPila().ToString());
@@ -128,7 +119,6 @@ namespace JuegosDeCartas
 				return p;
 		}
 			
-	
 		private void sumarPuntos(Player jug){
 			int sumar=0;		
 			this.puntosTotales();
@@ -163,21 +153,20 @@ namespace JuegosDeCartas
 			return winner;
 		}
 				
-		public void showResult(){
+		private void showResult(){
 			Console.WriteLine("\nRESULTADOS FINALES: \n");
 			foreach(Player p in players){
 				Console.WriteLine(p.ToString());
 			}
 		}
 		
-		public void showWinner(){
+		private void showWinner(){
 			Console.WriteLine("El ganador es:");
 			Console.WriteLine(ganador.ToString());
 		}
-		
-		
-	
+			
 		public void mazoPorColores(){
+			//Para verificar que no hay cartas repetidas.
 			List<Carta> rojo = new List<Carta>();
 			List<Carta> verde = new List<Carta>();
 			List<Carta> amarillo = new List<Carta>();
@@ -217,8 +206,7 @@ namespace JuegosDeCartas
 			
 			
 		}
-		
-		
+			
 		public void agregarJugadores(Player p){
 			players.Add(p);
 		}

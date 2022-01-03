@@ -15,13 +15,11 @@ namespace JuegosDeCartas
 			this.coleccion=pila.getColeccion();
 			primero();
 		}
-		
-		
+				
 		public int PosicionActual{
 			get{return posicionActual;}
 		}
-		
-		
+			
 		public void primero(){
 			posicionActual=0;
 		}

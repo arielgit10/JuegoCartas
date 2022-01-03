@@ -5,8 +5,7 @@ namespace JuegosDeCartas
 {
 
 	public class Carta
-	{
-		
+	{		
 		private string color;
 		private int valor;
 		

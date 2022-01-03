@@ -14,8 +14,7 @@ namespace JuegosDeCartas
 			generador=GeneradorDeDatosAleatorios.getInstance();
 			lector = new LectorDeDatos();
 		}
-		
-		
+			
 		public override Player crearAleatorio(){
 			return new Player(generador.stringAleatorio(8));	
 		}

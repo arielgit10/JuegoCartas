@@ -16,13 +16,11 @@ namespace JuegosDeCartas
 			this.coleccion=cola.Coleccion;
 			primero();
 		}
-		
-		
+				
 		public int PosicionActual{
 			get{return posicionActual;}
 		}
-		
-		
+				
 		public void primero(){
 			posicionActual=0;
 		}

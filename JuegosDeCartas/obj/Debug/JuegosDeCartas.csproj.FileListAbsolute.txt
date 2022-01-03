@@ -5,6 +5,6 @@ C:\Users\Usuario\Documents\SharpDevelop Projects\JuegosDeCartas\JuegosDeCartas\o
 C:\Users\Usuario\Documents\SharpDevelop Projects\JuegosDeCartas\JuegosDeCartas\obj\Debug\JuegosDeCartas.csprojResolveAssemblyReference.cache
 C:\Users\Usuario\Desktop\juegoCartas\JuegoCartas\JuegosDeCartas\bin\Debug\JuegosDeCartas.exe
 C:\Users\Usuario\Desktop\juegoCartas\JuegoCartas\JuegosDeCartas\bin\Debug\JuegosDeCartas.pdb
-C:\Users\Usuario\Desktop\juegoCartas\JuegoCartas\JuegosDeCartas\obj\Debug\JuegosDeCartas.csprojResolveAssemblyReference.cache
 C:\Users\Usuario\Desktop\juegoCartas\JuegoCartas\JuegosDeCartas\obj\Debug\JuegosDeCartas.exe
 C:\Users\Usuario\Desktop\juegoCartas\JuegoCartas\JuegosDeCartas\obj\Debug\JuegosDeCartas.pdb
+C:\Users\Usuario\Desktop\juegoCartas\JuegoCartas\JuegosDeCartas\obj\Debug\JuegosDeCartas.csprojResolveAssemblyReference.cache

@@ -9,8 +9,7 @@ namespace JuegosDeCartas
 		private string name;
 		private int pointsHand, pointsTotal;		
 		private ManoJugador manoJug;
-		
-		
+			
 		public Player(string name)
 		{
 			this.name=name;			
@@ -18,8 +17,7 @@ namespace JuegosDeCartas
 			this.pointsHand=0;
 			this.pointsTotal=0;
 		}
-		
-		
+				
 		public int getPuntosHand(){
 			return this.pointsHand;
 		}
@@ -53,17 +51,16 @@ namespace JuegosDeCartas
 		public void setManoJug(ManoJugador mano){
 			this.manoJug.setMano(mano);
 		}
+			
+//		public void throwCart(Carta c){					
+//			Console.WriteLine("El jugador {0} tira la carta {1} de {2}.",name,c.getValor(), c.getColor());
+//			this.manoJug.eliminarCarta(c);
+//		}
 		
-		
-		public void throwCart(Carta c){					
-			Console.WriteLine("El jugador {0} tira la carta {1} de {2}.",name,c.getValor(), c.getColor());
-			this.manoJug.eliminarCarta(c);
-		}
-		
-		public void pickCard(Carta c){
-			Console.WriteLine("El jugador {0} levanta la carta {1} de {2}.",name, c.getValor(), c.getColor());
-		    this.manoJug.agregarCarta(c);
-		}
+//		public void pickCard(Carta c){
+//			Console.WriteLine("El jugador {0} levanta la carta {1} de {2}.",name, c.getValor(), c.getColor());
+//		    this.manoJug.agregarCarta(c);
+//		}
 						
 		public bool manoVacia(){
 			return this.manoJug.manoVacia();

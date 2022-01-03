@@ -18,7 +18,6 @@ namespace JuegosDeCartas
 			this.llenar();
 		}
 		
-	
 		public Pila getMazo(){
 			return this.mazzo;
 		}
@@ -32,7 +31,7 @@ namespace JuegosDeCartas
 		}		
 		
 		public void limpiarMazo(){
-			this.mazzo.getColeccion().Clear();
+			this.mazzo.limpiar();
 		}
 
 		public Pila getMonton(){
@@ -40,7 +39,7 @@ namespace JuegosDeCartas
 		}
 		
 		public void limpiarMonton(){
-			this.monton.getColeccion().Clear();
+			this.monton.limpiar();
 		}
 		
 		public Carta getPila(){
@@ -72,10 +71,10 @@ namespace JuegosDeCartas
 			//luego de mezclar se lo añade al mazzo, que está vacío
 			foreach(Carta c in this.monton.getColeccion()){
 				this.mazzo.agregar(c);
-			}	
+			}
+			this.monton.limpiar();
 		}
-		
-		
+			
 		public void verMazo(){
 			Console.WriteLine("VER MAZO:\n");
 			foreach(Carta c in this.getMazo().getColeccion()){
@@ -83,7 +82,6 @@ namespace JuegosDeCartas
 			}
 		}	
 		
-		
-		
+			
 	}
 }

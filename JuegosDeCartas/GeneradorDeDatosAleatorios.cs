@@ -16,8 +16,7 @@ namespace JuegosDeCartas
 			if(r != null){
 				randomUnicoDeInstancia = r;
 			}
-			letras = new string[] {"q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","ñ","z","x","c","v","b","n","m"};
-		
+			letras = new string[] {"q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","ñ","z","x","c","v","b","n","m"};	
 		}
 		
 		
@@ -40,7 +39,6 @@ namespace JuegosDeCartas
 				return estring;
 		}
 		
-		
-		
+			
 	}
 }
