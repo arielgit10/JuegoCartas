@@ -48,6 +48,7 @@
     <Compile Include="Carta.cs" />
     <Compile Include="Cola.cs" />
     <Compile Include="Coleccionable.cs" />
+    <Compile Include="FactoryPlayerAbstract.cs" />
     <Compile Include="GeneradorDeDatosAleatorios.cs" />
     <Compile Include="Iterable.cs" />
     <Compile Include="Iterador.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Mazo.cs" />
     <Compile Include="Pila.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayersFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Uno.cs" />

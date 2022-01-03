@@ -7,16 +7,15 @@ namespace JuegosDeCartas
 	{
 		public static void Main(string[] args)
 		{
-				
-//			GeneradorDeDatosAleatorios genera = GeneradorDeDatosAleatorios.getInstance();
-//			//no me genera 40 numero diferentes, por que
-//			for(int i=0;i<40;i++){
-//				Console.WriteLine(genera.numeroAleatorio(39));
-//			}
-//			
 
-			
 			Uno uno = new Uno();
+			
+			Console.WriteLine("Ingrese cantidad de jugadores: ");
+			int numPlayers =int.Parse(Console.ReadLine());
+			for(int i=0;i<numPlayers;i++){
+				uno.agregarJugadores(FactoryPlayerAbstract.crearPorTeclado("player"));
+			}
+			
 			uno.jugar();
 			
 			

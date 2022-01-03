@@ -17,16 +17,8 @@ namespace JuegosDeCartas
 			if(r != null){
 				randomUnicoDeInstancia = r;
 			}		
-			this.mazo = new Mazo();
+			this.mazo = new Mazo();		
 			
-//			for(int i=0;i<4;i++){
-//				
-//				players.Add(new Player("););
-//			}
-			
-			players.Add(new Player("ARIEL"));
-			players.Add(new Player("FFFFF"));
-			players.Add(new Player("GGGGG"));
 		}
 				
 		public override void mezclar(){
@@ -184,9 +176,7 @@ namespace JuegosDeCartas
 		}
 		
 		
-		
-		
-		
+	
 		public void mazoPorColores(){
 			List<Carta> rojo = new List<Carta>();
 			List<Carta> verde = new List<Carta>();
@@ -226,6 +216,11 @@ namespace JuegosDeCartas
 			}
 			
 			
+		}
+		
+		
+		public void agregarJugadores(Player p){
+			players.Add(p);
 		}
 		
 		
